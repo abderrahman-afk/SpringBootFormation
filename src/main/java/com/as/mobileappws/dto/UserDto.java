@@ -14,7 +14,7 @@ public class UserDto implements Serializable {
 	private String password;
 	private String encryptedpassword;
 	private String emailVerificationToken;
-	private Boolean emailVerificationStatus;
+	private Boolean emailVerificationStatus = false;
 	
 	
 	
