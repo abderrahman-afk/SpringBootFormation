@@ -6,16 +6,80 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Table;
+/**
+ * The UserEntity class represents the entity for user-related data in the application.
+ * It is mapped to the "user" table in the database.
+ */
 @Entity
+@Table(name="user")
 public class UserEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
+	private long id;
+	@Column(nullable = false)
+	private String userId;
+	@Column(nullable = false,length = 50)
+	private String firstname;
+	@Column(nullable = false,length = 50)
+	private String lastname;
+	//	@Column(name ="email",nullable = false,length = 120,unique=true)
+	@Column(name ="email",nullable = false,length = 120)
+	private String email;
+	@Column(nullable = false)
+	private String encryptedpassword;
+	private String emailVerificationToken;
+	@Column(nullable = false)
+	private Boolean emailVerificationStatus = false;
+	
+	 /**
+     * Constructs a new UserEntity with the provided parameters.
+     *
+     * @param id                       The unique identifier of the user.
+     * @param userId                   The unique user ID.
+     * @param firstname                The first name of the user.
+     * @param lastname                 The last name of the user.
+     * @param email                    The email address of the user.
+     * @param encryptedPassword        The encrypted password of the user.
+     * @param emailVerificationToken   The token used for email verification.
+     * @param emailVerificationStatus  The status of email verification.
+     */
+	
+	public UserEntity(long id, String userId, String firstname, String lastname, String email, String encryptedpassword,
+			String emailVerificationToken, Boolean emailVerificationStatus) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.encryptedpassword = encryptedpassword;
+		this.emailVerificationToken = emailVerificationToken;
+		this.emailVerificationStatus = emailVerificationStatus;
+	}
 
+    /**
+     * Returns a string representation of the UserEntity.
+     *
+     * @return A string representation of the object.
+     */
+	
 	@Override
 	public String toString() {
 		return "UserEntity {id=" + id + ", userId=" + userId + ", firstname=" + firstname + ", lastname=" + lastname
 				+ ", email=" + email + ", encryptedpassword=" + encryptedpassword + ", emailVerificationToken="
 				+ emailVerificationToken + ", emailVerificationStatus=" + emailVerificationStatus + "}";
+	}  
+	/**
+     * Default constructor for UserEntity.
+     */
+	public UserEntity() {
+		super();
+		
 	}
+	 // Getters and setters...
+
 	public long getId() {
 		return id;
 	}
@@ -64,26 +128,9 @@ public class UserEntity implements Serializable {
 	public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
 		this.emailVerificationStatus = emailVerificationStatus;
 	}
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue
-	private long id;
-	@Column(nullable = false)
-	private String userId;
-	@Column(nullable = false,length = 50)
-	private String firstname;
-	@Column(nullable = false,length = 50)
-	private String lastname;
-	@Column(nullable = false,length = 120)
-	private String email;
-	@Column(nullable = false)
-	private String encryptedpassword;
-	private String emailVerificationToken;
-	@Column(nullable = false)
-	private Boolean emailVerificationStatus = false;
-	public UserEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	
+	
+	
 
 }

@@ -1,7 +1,10 @@
 package com.as.mobileappws.dto;
 
 import java.io.Serializable;
-
+/**
+ * The UserDto class represents the Data Transfer Object (DTO) for user-related information.
+ * It is used to transfer user data between the controller layer and the service layer.
+ */
 public class UserDto implements Serializable {
  
 
