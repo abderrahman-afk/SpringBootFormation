@@ -3,6 +3,7 @@ package com.as.mobileappws.service.Impl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.as.mobileappws.dto.UserDto;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private Utiltool utiltool;
+    @Autowired
+    private BCryptPasswordEncoder bCryptEncoder;
 
     /**
      * Creates a new user based on the provided user DTO.
@@ -45,7 +48,7 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userDto, userEntity);
 
         // Set default values (for example purposes)
-        userEntity.setEncryptedpassword("test encrypted");
+        userEntity.setEncryptedpassword(bCryptEncoder.encode(userDto.getPassword()));
         
         userEntity.setUserId(publicId);
 

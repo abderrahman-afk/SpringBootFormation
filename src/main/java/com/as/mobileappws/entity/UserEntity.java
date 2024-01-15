@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
  * It is mapped to the "user" table in the database.
  */
 @Entity
+
 @Table(name="user")
 public class UserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
